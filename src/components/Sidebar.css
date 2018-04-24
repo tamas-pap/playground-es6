@@ -1,4 +1,4 @@
-.tableOfContent {
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,11 +12,11 @@
   transition: transform 0.3s ease-out;
 }
 
-.tableOfContent.is-open {
+.sidebar.is-open {
   transform: translateX(0);
 }
 
-.tableOfContent-item {
+.sidebar-item {
   display: block;
   margin-bottom: 8px;
   padding: 4px 8px;
@@ -25,10 +25,10 @@
   color: #000;
 }
 
-.tableOfContent-item:hover {
+.sidebar-item:hover {
   background-color: #ffcc00;
 }
 
-.tableOfContent-item.active {
+.sidebar-item.active {
   background-color: #ffcc00;
 }

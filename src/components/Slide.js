@@ -1,43 +1,63 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Header from './Header';
-import TableOfContent from './TableOfContent';
+import Sidebar from './Sidebar';
 import Playground from './Playground';
 import Lesson from './Lesson';
+import lessons from '../lessons/lessons';
 import './Slide.css';
-import lesson from '../lessons/variable-declaration.md';
 
 class Slide extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTableOfContentVisible: false,
+      isSidebarVisible: false,
     };
   }
 
-  openTableOfContent = () => {
+  openSidebar = () => {
     this.setState({
-      isTableOfContentVisible: true,
+      isSidebarVisible: true,
     });
   };
 
-  closeTableOfContent = () => {
+  closeSidebar = () => {
     this.setState({
-      isTableOfContentVisible: false,
+      isSidebarVisible: false,
     });
   };
 
   render() {
+    const {
+      location: { pathname },
+    } = this.props;
+
+    const lessonId = pathname.substring(1);
+    const lesson = lessons.find(lesson => lesson.id === lessonId);
+    const lessonIndex = lessons.indexOf(lesson);
+    const previousLessonIndex = lessonIndex > 0 ? lessonIndex - 1 : undefined;
+    const nextLessonIndex = lessonIndex < lessons.length - 1 ? lessonIndex + 1 : undefined;
+    const previousLesson = previousLessonIndex >= 0 ? lessons[previousLessonIndex] : undefined;
+    const nextLesson = nextLessonIndex >= 0 ? lessons[nextLessonIndex] : undefined;
+
     return (
       <div className="slide">
-        <Header openTableOfContent={this.openTableOfContent} />
-        <TableOfContent isOpen={this.state.isTableOfContentVisible} close={this.closeTableOfContent} />
+        <Header
+          openSidebar={this.openSidebar}
+          lesson={lesson}
+          previousLesson={previousLesson}
+          nextLesson={nextLesson}
+        />
+
+        <Sidebar isOpen={this.state.isSidebarVisible} close={this.closeSidebar} />
+
         <div className="slide-content">
-          <Playground embedId="5ynqqk03n4" />
-          <Lesson lesson={lesson} />
+          <Playground codeSandboxId={lesson.codeSandboxId} />
+          <Lesson lessonId={lesson.id} />
         </div>
       </div>
     );
   }
 }
 
-export default Slide;
+export default withRouter(Slide);

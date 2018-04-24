@@ -1,21 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ openTableOfContent }) => (
+const Header = ({ openSidebar, lesson, previousLesson, nextLesson }) => (
   <div className="header">
     <div className="header-actions">
-      <button className="header-action header-action--menuOpen" onClick={openTableOfContent} />
-      <a className="header-action header-action--previous" href="#hello">
-        Previous
-      </a>
+      <button className="header-action header-action--menuOpen" onClick={openSidebar} />
+      {previousLesson && (
+        <Link className="header-action header-action--previous" to={`/${previousLesson.id}`}>
+          {previousLesson.title}
+        </Link>
+      )}
     </div>
 
-    <h1 className="header-title">Introduction to JSX</h1>
+    <h1 className="header-title">{lesson.title}</h1>
 
     <div className="header-actions">
-      <a className="header-action header-action--next" href="#hello">
-        Next
-      </a>
+      {nextLesson && (
+        <Link className="header-action header-action--next" to={`/${nextLesson.id}`}>
+          {nextLesson.title}
+        </Link>
+      )}
     </div>
   </div>
 );

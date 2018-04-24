@@ -7,27 +7,35 @@ class Lesson extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lesson: undefined,
+      lessonContent: undefined,
     };
   }
 
   componentDidMount() {
-    const { lesson } = this.props;
-    fetch(lesson)
-      .then(response => response.text())
-      .then(text =>
-        this.setState({
-          lesson: text,
-        }),
-      );
+    const { lessonId } = this.props;
+    this.loadLesson(lessonId);
   }
 
+  componentWillReceiveProps({ lessonId }) {
+    this.loadLesson(lessonId);
+  }
+
+  loadLesson = lessonId => {
+    import(`../lessons/${lessonId}.md`)
+      .then(absoluteLessonPath => fetch(absoluteLessonPath))
+      .then(response => response.text())
+      .then(lessonContent =>
+        this.setState({
+          lessonContent,
+        }),
+      );
+  };
+
   render() {
-    const { lesson } = this.state;
-
-    if (!lesson) return null;
-
-    return <ReactMarkdown className="lesson" source={this.state.lesson} renderers={{ code: CodeBlock }} />;
+    const { lessonContent } = this.state;
+    return lessonContent ? (
+      <ReactMarkdown className="lesson" source={this.state.lessonContent} renderers={{ code: CodeBlock }} />
+    ) : null;
   }
 }
 
