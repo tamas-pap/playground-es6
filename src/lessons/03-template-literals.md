@@ -1,4 +1,4 @@
-# Tenplate literals
+# Template literals
 
 #### Introduction
 

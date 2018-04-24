@@ -5,7 +5,7 @@ import Slide from './Slide';
 const App = () => (
   <Router>
     <Switch>
-      <Redirect exact from="/" to="/variable-declaration" />
+      <Redirect exact from="/" to="/01-variable-declaration" />
       <Route path="/:slideId" component={Slide} />
     </Switch>
   </Router>
