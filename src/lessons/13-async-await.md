@@ -150,8 +150,6 @@ getGithubRepos();
 
 #### Promisifying callback based functions
 
-**Callback based functions**
-
 ```js
 navigator.geolocation.getCurrentPosition(
   function success(position) {
@@ -162,8 +160,6 @@ navigator.geolocation.getCurrentPosition(
   },
 );
 ```
-
-**Promisifying a callback based functions**
 
 ```js
 function getPosition() {
