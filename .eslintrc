@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "indent": "off",
+    "max-len": "off",
+    "arrow-parens": "off",
+    "consistent-return": "off",
+    "no-alert": "off",
+    "no-shadow": "off",
+    "no-plusplus": "off",
+    "no-confusing-arrow": "off",
+    "no-mixed-operators": "off",
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/anchor-has-content": "off"
+  }
+}
