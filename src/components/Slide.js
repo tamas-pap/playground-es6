@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import TableOfContent from './TableOfContent';
+import Playground from './Playground';
+import Lesson from './Lesson';
+import './Slide.css';
+import lesson from '../lessons/variable-declaration.md';
 
 class Slide extends Component {
   constructor(props) {
@@ -27,6 +31,10 @@ class Slide extends Component {
       <div className="slide">
         <Header openTableOfContent={this.openTableOfContent} />
         <TableOfContent isOpen={this.state.isTableOfContentVisible} close={this.closeTableOfContent} />
+        <div className="slide-content">
+          <Playground embedId="5ynqqk03n4" />
+          <Lesson lesson={lesson} />
+        </div>
       </div>
     );
   }

@@ -1,0 +1,11 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css');
+
+.lesson {
+  flex-basis: 40%;
+  height: 100%;
+  padding: 0 60px;
+  overflow-y: scroll;
+  background-color: #fff;
+  border-left: 1px solid #e0e1e2;
+  font-size: 14px;
+}
